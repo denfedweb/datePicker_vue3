@@ -39,6 +39,7 @@ const store = useDatesStore()
 function setDate(date) {
   store.currentDate = new Date(date.originalDay).setHours(0,0,0,0)
   store.toDate = null
+  store.selectedDays = []
 }
 
 const currentDayGetTime = computed(()=> {
@@ -59,7 +60,7 @@ function upElement() {
 }
 
 function pushDate(date) {
-  if (props.selectFewDates) {
+  if (props.selectFewDates && store.currentDate <= date.getTime) {
     store.toDate = new Date(date.originalDay).setHours(0,0,0,0)
     store.setCurrentDays()
   }
