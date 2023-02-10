@@ -10,4 +10,7 @@ export default function (){
     dat.setDate(dat.getDate() + days);
     return dat;
   }
+    Date.prototype.timeNow = function () {
+      return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes();
+  }
 }

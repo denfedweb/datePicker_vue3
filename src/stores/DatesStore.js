@@ -3,7 +3,7 @@ import {defineStore} from 'pinia'
 export const useDatesStore = defineStore('DatesStore', {
   state: () => {
     return {
-      timeShowed: true,
+      timeHidden: false,
       sidebarShowed: false,
       currentDate: new Date().setHours(0,0,0,0),
       toDate: null,
@@ -16,13 +16,6 @@ export const useDatesStore = defineStore('DatesStore', {
     }
   },
   getters: {
-    fullDate(state, monthSep = 3){
-      let date = new Date(state.currentDate)
-      let month = state.month[date.getMonth()]
-      let day = date.getDate()
-      let year = date.getFullYear()
-      return `${month.slice(0, monthSep)} ${day}, ${year}`
-    },
     currentDateMonth(state) {
       return new Date(state.currentMonth).getMonth()
     },

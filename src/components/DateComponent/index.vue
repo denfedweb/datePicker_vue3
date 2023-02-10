@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-5 ms-2 calendar-container">
-    <div class="d-flex justify-content-between">
+  <div class="mt-5 ms-2">
+    <div class="d-flex justify-content-between ms-4">
       <button class="btn btn-primary" @click="changeCurrentMonth('prev')">prev</button>
       <span>
         {{store.month[new Date(store.currentMonth).getMonth()]}}
@@ -43,9 +43,3 @@ function changeSelectFewDates(flag) {
 }
 
 </script>
-
-<style>
-.calendar-container {
-  width: 600px;
-}
-</style>

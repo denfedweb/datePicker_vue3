@@ -11,13 +11,13 @@
       <li class="list-group-item">
         <div class="form-check form-switch">
           <span>Hide Time</span>
-          <input class="form-check-input" type="checkbox" role="switch">
+          <input v-model="timeHidden" @change="changeTimeFlag" class="form-check-input" type="checkbox" role="switch">
         </div>
       </li>
       <li class="list-group-item">
         <div class="form-check form-switch">
           <span>Show SideBar</span>
-          <input class="form-check-input" type="checkbox" role="switch">
+          <input v-model="sideBarShow" @change="changeSidebarFlag" class="form-check-input" type="checkbox" role="switch">
         </div>
       </li>
     </ul>
@@ -26,11 +26,24 @@
 
 <script setup>
 import {ref} from "vue"
+import {useDatesStore} from "../stores/DatesStore"
 
-let darkMode = ref(false)
+const dateStore = useDatesStore()
+
+const darkMode = ref(false)
+const timeHidden = ref(false)
+const sideBarShow = ref(false)
+
 function changeMode() {
-  document.querySelector('html').setAttribute('data-bs-theme', darkMode.value ? 'dark' : 'light')
+    document.querySelector('html').setAttribute('data-bs-theme', darkMode.value ? 'dark' : 'light')
 }
 
+function changeTimeFlag() {
+    dateStore.timeHidden = timeHidden.value
+}
 
+function changeSidebarFlag() {
+    console.log(sideBarShow.value)
+    dateStore.sidebarShowed = !sideBarShow.value
+}
 </script>
