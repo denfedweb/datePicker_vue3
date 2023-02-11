@@ -1,5 +1,5 @@
 <template>
-    <div class="ms-4 times-block">
+    <div class="mt-4 ms-4 times-block">
         <div class="d-flex justify-content-between">
             <span>From: {{dateFrom}}</span>
             <span>

@@ -2,9 +2,8 @@
   <div>
     <div class="grid-container">
       <p class="grid-element" v-for="week in props.weeks" :key="week">{{week}}</p>
-      <div class="free-day grid-element" v-for="freeDay in store[props.month][0].dayOfWeek" :key="freeDay"></div>
-      <div v-for="monthDay in store[props.month]"
-           :key="monthDay.day"
+      <div v-for="(monthDay, idx) in store[props.month]"
+           :key="idx"
            :data-date="monthDay.originalDay"
            @click="setDate(monthDay, month)"
            @mouseenter="pushDate(monthDay)"

@@ -3,6 +3,7 @@ import {defineStore} from 'pinia'
 export const useDatesStore = defineStore('DatesStore', {
   state: () => {
     return {
+      disableDatePicker: false,
       timeHidden: false,
       sidebarShowed: false,
       currentDate: new Date().setHours(0,0,0,0),
@@ -73,5 +74,35 @@ function getDaysInMonth(month = 0, year = new Date().getFullYear()) {
     days.push(new Date(date))
     date.setDate(date.getDate() + 1)
   }
-  return days
+  const firstDayOfMonth = days[0]
+  const lastDayOfMonth = days[days.length - 1]
+  const daysOfPreviousMonth =  getPreviousMonthDays(firstDayOfMonth)
+  const daysOfNextMonth = getNextMonthDays(lastDayOfMonth)
+
+  return [...daysOfPreviousMonth,...days, ...daysOfNextMonth]
+}
+
+function getPreviousMonthDays(date) {
+  const count = date.getDay() || 7
+  const dates = [...Array(count + 1)].map((_, i) => {
+    const d = new Date(date)
+    d.setDate(d.getDate() - i)
+    return d
+  })
+  dates.reverse()
+  dates.pop()
+
+  return dates
+}
+
+function getNextMonthDays(date) {
+  const count = date.getDay() !== 6 ? 7 - date.getDay() : 8
+  const dates = [...Array(count)].map((_, i) => {
+    const d = new Date(date)
+    d.setDate(d.getDate() + i)
+    return d
+  })
+  dates.splice(0, 1)
+
+  return dates
 }

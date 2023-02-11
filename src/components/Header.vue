@@ -43,7 +43,6 @@ function changeTimeFlag() {
 }
 
 function changeSidebarFlag() {
-    console.log(sideBarShow.value)
-    dateStore.sidebarShowed = !sideBarShow.value
+    dateStore.sidebarShowed = sideBarShow.value
 }
 </script>
