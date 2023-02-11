@@ -1,4 +1,4 @@
-![Снимок](https://user-images.githubusercontent.com/45905083/218263701-943d551a-3d07-4753-9556-3a90fe9fdd79.PNG)
+![Снимок](https://user-images.githubusercontent.com/45905083/218265691-e885044e-6739-4af9-b008-082e69bc3885.PNG)
 
 
 ## Project Setup
