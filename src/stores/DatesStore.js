@@ -43,7 +43,7 @@ export const useDatesStore = defineStore('DatesStore', {
       this.setMonthDays()
     },
     setMonthDays(){
-      this.currentDaysInMonth = mapForMonthDays(getDaysInMonth(this.currentDateMonth, new Date(this.currentMonth).getFullYear()), this.currentDate)
+      this.currentDaysInMonth = getDaysInMonth(this.currentDateMonth, new Date(this.currentMonth).getFullYear())
       let nextMonth
       let currentMonth = new Date(this.currentMonth)
       if (currentMonth.getMonth() == 11) {
@@ -52,18 +52,19 @@ export const useDatesStore = defineStore('DatesStore', {
           nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
       }
       this.nextMonth = nextMonth
-      this.nextDaysInMonth = mapForMonthDays(getDaysInMonth(nextMonth.getMonth(), nextMonth.getFullYear()), this.currentDate)
+      this.nextDaysInMonth = getDaysInMonth(nextMonth.getMonth(), nextMonth.getFullYear())
     }
   },
 })
 
-function mapForMonthDays(monthArray, currentDate){
+function mapForMonthDays(monthArray, anotherDay = false){
   return monthArray.map((day) => ({
     weekNumber: new Date(day).getWeek(),
     originalDay: day,
     dayOfWeek: new Date(day).getDay(),
     day: new Date(day).getDate(),
-    getTime: new Date(day).getTime()
+    getTime: new Date(day).getTime(),
+    anotherDay
   }))
 }
 
@@ -79,7 +80,11 @@ function getDaysInMonth(month = 0, year = new Date().getFullYear()) {
   const daysOfPreviousMonth =  getPreviousMonthDays(firstDayOfMonth)
   const daysOfNextMonth = getNextMonthDays(lastDayOfMonth)
 
-  return [...daysOfPreviousMonth,...days, ...daysOfNextMonth]
+  return [
+    ...mapForMonthDays(daysOfPreviousMonth, true),
+    ...mapForMonthDays(days),
+    ...mapForMonthDays(daysOfNextMonth, true)
+  ]
 }
 
 function getPreviousMonthDays(date) {

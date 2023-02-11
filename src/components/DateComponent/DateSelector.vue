@@ -11,7 +11,8 @@
            @mouseup="upElement"
            :class="{
              selected: monthDay.getTime === currentDayGetTime || monthDay.getTime === toDateGetTime,
-             betweenDay: store.selectedDays.includes(monthDay.getTime)
+             betweenDay: store.selectedDays.includes(monthDay.getTime),
+             anotherDay: monthDay.anotherDay
            }"
            class="day grid-element"
       >
@@ -75,6 +76,9 @@ function pushDate(date) {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.anotherDay {
+  color: #bab7b7;
 }
 .day {
   cursor: pointer;
