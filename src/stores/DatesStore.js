@@ -47,9 +47,9 @@ export const useDatesStore = defineStore('DatesStore', {
       let nextMonth
       let currentMonth = new Date(this.currentMonth)
       if (currentMonth.getMonth() == 11) {
-          nextMonth = new Date(currentMonth.getFullYear() + 1, 0, 1);
+          nextMonth = new Date(currentMonth.getFullYear() + 1, 0, 1)
       } else {
-          nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+          nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1)
       }
       this.nextMonth = nextMonth
       this.nextDaysInMonth = getDaysInMonth(nextMonth.getMonth(), nextMonth.getFullYear())
