@@ -19,7 +19,7 @@
 import {defineProps} from "vue"
 import {useDatesStore} from "@/stores/DatesStore"
 import {useTimesStore} from "@/stores/TimesStore"
-import TimeSelector from "./TimeSelector.vue";
+import TimeSelector from "./TimeSelector.vue"
 
 const props = defineProps({
   dateFrom: String,
