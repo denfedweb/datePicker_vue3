@@ -30,7 +30,7 @@ export const useDatesStore = defineStore('DatesStore', {
       let currentDate = new Date(this.currentDate)
       while (currentDate < new Date(this.toDate)) {
         dateArray.push(currentDate.getTime())
-        currentDate = currentDate.addDays(1);
+        currentDate = currentDate.addDays(1)
       }
       this.selectedDays = dateArray
     },
